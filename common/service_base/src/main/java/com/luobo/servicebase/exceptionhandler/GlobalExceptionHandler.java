@@ -1,9 +1,9 @@
 package com.luobo.servicebase.exceptionhandler;
 
+
 import com.luobo.commonutils.Msg;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 //统一异常处理类
