@@ -37,7 +37,7 @@ public class TokenLogoutHandler implements LogoutHandler {
             String userName = tokenManager.getUserFromToken(token);
             redisTemplate.delete(userName);
         }
-        ResponseUtil.out(response,  Msg.sucess());
+        ResponseUtil.out(response,  Msg.success());
     }
 
 }

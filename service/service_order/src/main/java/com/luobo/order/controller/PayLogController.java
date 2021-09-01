@@ -28,7 +28,7 @@ public class PayLogController {
     public Msg createNative(@PathVariable String orderNo){
         Map map = payLogService.createNative(orderNo);
         System.out.println("返回二维码map"+ map);
-        return Msg.sucess().data(map);
+        return Msg.success().data(map);
     }
     @GetMapping("queryPayStatus/{orderNo}")
     public Msg queryPayStatus(@PathVariable String orderNo){
@@ -39,7 +39,7 @@ public class PayLogController {
         }
         if(map.get("trade_state").equals("SUCCESS")){
             payLogService.updateOrdersStatus(map);
-            return Msg.sucess();
+            return Msg.success();
         }
         return Msg.error().message("支付出错了");
     }

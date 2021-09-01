@@ -20,7 +20,7 @@ public class Msg {
     //私有构造器
     private Msg(){}
     //成功返回
-    public static Msg sucess(){
+    public static Msg success(){
         Msg msg = new Msg();
         msg.setSuccess(true);
         msg.setCode(ResultCode.SUCCESS);

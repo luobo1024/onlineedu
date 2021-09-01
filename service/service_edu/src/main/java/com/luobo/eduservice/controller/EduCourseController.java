@@ -38,22 +38,22 @@ public class EduCourseController {
     @PostMapping("/addCourseInfo")
     public Msg addCourseInfo(@RequestBody CourseInfoVo courseInfoVo){
         String id = eduCourseService.saveCourseInfo(courseInfoVo);
-        return Msg.sucess().data("courseId",id);
+        return Msg.success().data("courseId",id);
     }
     @GetMapping("/getCourseInfo/{courseId}")
     public Msg getCourseInfo(@PathVariable String courseId){
         CourseInfoVo courseInfoById = eduCourseService.getCourseInfoById(courseId);
-        return Msg.sucess().data("course",courseInfoById);
+        return Msg.success().data("course",courseInfoById);
     }
     @PostMapping("/updateCourseInfo")
     public Msg updateCourseInfo(@RequestBody CourseInfoVo courseInfoVo){
         eduCourseService.updateCourseInfoById(courseInfoVo);
-        return Msg.sucess();
+        return Msg.success();
     }
     @GetMapping("/getCoursePublishInfo/{courseId}")
     public Msg getCoursePublishInfo(@PathVariable String courseId){
         CoursePublishVo courseInfo =  eduCourseService.getCoursePublishInfo(courseId);
-        return Msg.sucess().data("courseInfo",courseInfo);
+        return Msg.success().data("courseInfo",courseInfo);
     }
     //课程最终发布
     @PostMapping("publishCourse/{courseId}")
@@ -62,12 +62,12 @@ public class EduCourseController {
         eduCourse.setId(courseId);
         eduCourse.setStatus("Normal");
         eduCourseService.updateById(eduCourse);
-        return Msg.sucess();
+        return Msg.success();
     }
     @GetMapping
     public Msg getCourseList(){
         List<EduCourse> list = eduCourseService.list(null);
-        return Msg.sucess().data("list",list);
+        return Msg.success().data("list",list);
     }
     //分页功能
     @PostMapping("pageCourseCondition/{current}/{limit}")
@@ -102,12 +102,12 @@ public class EduCourseController {
         long total = coursePage.getTotal();
         //返回每页数据的List集合
         List<EduCourse> records = coursePage.getRecords();
-        return Msg.sucess().data("total",total).data("rows",records);
+        return Msg.success().data("total",total).data("rows",records);
     }
     @DeleteMapping("{courseId}")
     public Msg deleteCourse(@PathVariable String courseId){
         eduCourseService.removeCourseById(courseId);
-        return Msg.sucess();
+        return Msg.success();
     }
 }
 

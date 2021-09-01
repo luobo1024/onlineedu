@@ -12,6 +12,11 @@
     <artifactId>service_base</artifactId>
     <dependencies>
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+        </dependency>
+        <dependency>
             <groupId>com.luobo</groupId>
             <artifactId>common_utils</artifactId>
             <version>0.0.1-SNAPSHOT</version>

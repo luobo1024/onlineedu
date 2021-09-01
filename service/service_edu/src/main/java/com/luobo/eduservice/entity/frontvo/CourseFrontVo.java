@@ -1,7 +1,7 @@
 package com.luobo.eduservice.entity.frontvo;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
+import lombok.*;
 
 @Data
 public class CourseFrontVo {

@@ -13,12 +13,12 @@ public class EduLoginController {
     //login
     @PostMapping("/login")
     public Msg login(){
-        return Msg.sucess().data("token","admin");
+        return Msg.success().data("token","admin");
     }
 
     @GetMapping("/info")
     public Msg info(){
-        return Msg.sucess().data("roles","[admin]")
+        return Msg.success()
                 .data("name","admin")
                 .data("avatar","https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
     }

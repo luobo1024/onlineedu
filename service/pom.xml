@@ -18,9 +18,13 @@
         <module>service_cms</module>
         <module>service_msm</module>
         <module>service_order</module>
+        <module>service_article</module>
     </modules>
 
     <dependencies>
+
+
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>

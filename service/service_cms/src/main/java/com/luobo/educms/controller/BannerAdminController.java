@@ -38,23 +38,23 @@ public class BannerAdminController {
         long total = crmPage.getTotal();
         //返回每页数据的List集合
         List<CrmBanner> records = crmPage.getRecords();
-        return Msg.sucess().data("total",total).data("rows",records);
+        return Msg.success().data("total",total).data("rows",records);
     }
     @PostMapping("/addBanner")
     public Msg addBanner(@RequestBody CrmBanner crmBanner)
     {
         crmBannerService.save(crmBanner);
-        return Msg.sucess();
+        return Msg.success();
     }
     @PostMapping("/updateBanner")
     public Msg updateBanner(@RequestBody CrmBanner crmBanner){
         crmBannerService.updateById(crmBanner);
-        return Msg.sucess();
+        return Msg.success();
     }
     @DeleteMapping("/removeBanner/{bannerId}")
     public Msg removeBanner(@PathVariable String bannerId){
         crmBannerService.removeById(bannerId);
-        return Msg.sucess();
+        return Msg.success();
 
     }
 }

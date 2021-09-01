@@ -23,7 +23,7 @@ public class MsmController {
     public Msg sendMsg(@PathVariable String email){
         String code = redisTemplate.opsForValue().get(email);
         if(!StringUtils.isEmpty(code)){
-            return Msg.sucess();
+            return Msg.success();
         }
         code = RandomUtil.getFourBitRandom();
         boolean isSend = msmService.sendMail(email, code);
@@ -32,6 +32,6 @@ public class MsmController {
         }else {
             return Msg.error().message("发送验证码失败");
         }
-        return Msg.sucess();
+        return Msg.success();
     }
 }

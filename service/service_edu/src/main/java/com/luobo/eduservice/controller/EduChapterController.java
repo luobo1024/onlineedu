@@ -28,28 +28,28 @@ public class EduChapterController {
     @GetMapping("/getChapterVideo/{courseId}")
     public Msg getChapterVideo(@PathVariable String courseId){
        List<ChapterVo> videos = eduChapterService.getChapterVideoByCourseId(courseId);
-        return Msg.sucess().data("Videos",videos);
+        return Msg.success().data("Videos",videos);
     }
     @PostMapping("/addChapter")
     public Msg addChapter(@RequestBody EduChapter eduChapter){
         eduChapterService.save(eduChapter);
-        return Msg.sucess();
+        return Msg.success();
 
     }
     @GetMapping("/getChapterInfo/{chapterId}")
     public Msg getChapterInfo(@PathVariable String chapterId){
         EduChapter eduChapter = eduChapterService.getById(chapterId);
-        return Msg.sucess().data("chapter", eduChapter);
+        return Msg.success().data("chapter", eduChapter);
     }
     @PostMapping("/updateChapter")
     public Msg updateChapter(@RequestBody EduChapter eduChapter){
         eduChapterService.updateById(eduChapter);
-        return Msg.sucess();
+        return Msg.success();
     }
     @DeleteMapping("/deleteChapter/{chapterId}")
     public Msg deleteChapter(@PathVariable String chapterId){
         boolean result = eduChapterService.deleteChapterById(chapterId);
-        return result?Msg.sucess():Msg.error();
+        return result?Msg.success():Msg.error();
     }
 
 

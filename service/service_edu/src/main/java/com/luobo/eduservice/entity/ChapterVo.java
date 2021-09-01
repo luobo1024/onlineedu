@@ -1,6 +1,6 @@
 package com.luobo.eduservice.entity;
 
-import lombok.Data;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;

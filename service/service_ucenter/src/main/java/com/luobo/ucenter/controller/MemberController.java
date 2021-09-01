@@ -30,19 +30,19 @@ public class MemberController {
     @PostMapping("/login")
     public Msg loginUser(@RequestBody Member member){
         String token =  memberService.login(member);
-        return Msg.sucess().data("token", token);
+        return Msg.success().data("token", token);
     }
     @PostMapping("/register")
     public Msg registerUser(@RequestBody RegisterVo registerVo){
         memberService.register(registerVo);
-        return Msg.sucess();
+        return Msg.success();
     }
     @GetMapping("/getMemberInfo")
     public Msg getMemberInfo(HttpServletRequest request){
         //调用jwt工具类方法,根据request对象获取头信息,返回用户ID
         String memberId = JwtUtils.getMemberIdByJwtToken(request);
         Member member = memberService.getById(memberId);
-        return Msg.sucess().data("userInfo",member);
+        return Msg.success().data("userInfo",member);
 
     }
     //根据用户id获取用户信息

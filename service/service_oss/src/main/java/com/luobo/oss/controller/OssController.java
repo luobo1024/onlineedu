@@ -19,6 +19,6 @@ public class OssController {
     @PostMapping
     public Msg uploadOssFile(MultipartFile file){
         String url = ossService.uploadFileAvator(file);
-        return Msg.sucess().data("url",url);
+        return Msg.success().data("url",url);
     }
 }

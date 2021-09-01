@@ -38,18 +38,18 @@ public class EduTeacherController {
     EduTeacherService teacherService = new EduTeacherServiceImpl();
 
     //查询所有讲师
-    @ApiOperation(value = "所有讲师列表")
+    @ApiOperation(value = "获取所有讲师")
     @GetMapping("/findAll")
     public Msg findAllTeacher(){
-        List<EduTeacher> list = teacherService.list(null);
-        return Msg.sucess().data("items",list);
+        List<EduTeacher> list =  teacherService.findAllTeacher();
+        return Msg.success().data("items",list);
     }
     //逻辑删除讲师
     @ApiOperation(value = "逻辑删除讲师")
     @DeleteMapping("/{id}")
     public Msg removeTeacher(@ApiParam(name = "id", value = "讲师ID") @PathVariable String id){
-        boolean flag = teacherService.removeById(id);
-        return flag ? Msg.sucess():Msg.error();
+        boolean flag = teacherService.removeTeacherById(id);
+        return flag ? Msg.success():Msg.error();
     }
 
     //分页功能
@@ -57,70 +57,37 @@ public class EduTeacherController {
     @GetMapping("/pageTeacher/{current}/{limit}")
     public Msg pageTeacher(@ApiParam(name = "current", value = "当前页") @PathVariable long current,
                            @ApiParam(name = "limit", value = "每页记录数") @PathVariable long limit){
-        //创建page对象
-        Page<EduTeacher> teacherPage = new Page<>(current,limit);
-        //调用方法实现分页,底层封装,把分页数据封装到teacherPage中
-        teacherService.page(teacherPage,null);
-        //总记录数
-        long total = teacherPage.getTotal();
-        //返回每页数据的List集合
-        List<EduTeacher> records = teacherPage.getRecords();
-        return Msg.sucess().data("total",total).data("rows",records);
+
+        Map<String,Object> resultMap = teacherService.getTeacherByPage(current,limit);
+        return Msg.success().data("total",resultMap.get("total")).data("rows",resultMap.get("rows"));
     }
     @ApiOperation(value = "分页查询讲师(条件)")
     @PostMapping("pageTeacherCondition/{current}/{limit}")
     public Msg pageTeacherCondition(@ApiParam(name = "current", value = "当前页") @PathVariable long current,
                                     @ApiParam(name = "limit", value = "每页记录数") @PathVariable long limit,
                                     @RequestBody TeacherQuery teacherQuery){//TeacherQuery可以写成@RequestBody(required = false) TeacherQuery必须使用post方法提交,也可以直接写成一个参数
-        //创建page对象
-        Page<EduTeacher> teacherPage = new Page<>(current,limit);
-        //构建条件
-        QueryWrapper<EduTeacher> wrapper = new QueryWrapper<>();
-        //判断条件值是否为空,如果不为空就拼接条件
-        String name = teacherQuery.getName();
-        Integer level = teacherQuery.getLevel();
-        String begin = teacherQuery.getBegin();
-        String end = teacherQuery.getEnd();
-        if(!StringUtils.isEmpty(name)){
-            wrapper.like("name", name);
-        }
-        if(!StringUtils.isEmpty(level)){
-            wrapper.eq("level",level);
-        }
-        if(!StringUtils.isEmpty(begin)){
-            wrapper.ge("begin", begin);
-        }
-        if(!StringUtils.isEmpty(end)){
-            wrapper.le("begin",end);
-        }
-        wrapper.orderByDesc("gmt_modified");
-        //调用方法实现分页,底层封装,把分页数据封装到teacherPage中
-        teacherService.page(teacherPage,wrapper);
-        //总记录数
-        long total = teacherPage.getTotal();
-        //返回每页数据的List集合
-        List<EduTeacher> records = teacherPage.getRecords();
-        return Msg.sucess().data("total",total).data("rows",records);
+        Map<String,Object> resultMap = teacherService.getTeacherByPageWithCondition(current,limit,teacherQuery);
+        return Msg.success().data("total",resultMap.get("total")).data("rows",resultMap.get("rows"));
     }
     @ApiOperation(value = "添加讲师")
     @PostMapping("/addTeacher")
-    public Msg addtTeacher(@RequestBody EduTeacher eduTeacher){
+    public Msg addTeacher(@RequestBody EduTeacher eduTeacher){
         boolean save = teacherService.save(eduTeacher);
-        return save?Msg.sucess():Msg.error();
+        return save?Msg.success():Msg.error();
     }
 
     @ApiOperation(value = "查询讲师")
     @GetMapping("/getTeacher/{id}")
     public Msg getTeacher(@ApiParam(name = "id", value = "讲师id") @PathVariable long id){
         EduTeacher teacher = teacherService.getById(id);
-        return Msg.sucess().data("teacher",teacher);
+        return Msg.success().data("teacher",teacher);
     }
 
     @ApiOperation(value = "修改讲师")
     @PostMapping("/updateTeacher")
     public Msg updateTeacher(@RequestBody EduTeacher eduTeacher){
         boolean result = teacherService.updateById(eduTeacher);
-        return result?Msg.sucess():Msg.error();
+        return result?Msg.success():Msg.error();
     }
 
 }

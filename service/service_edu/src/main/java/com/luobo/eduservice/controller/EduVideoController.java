@@ -31,7 +31,7 @@ public class EduVideoController {
     @PostMapping("/addVideo")
     public Msg addVideo(@RequestBody EduVideo video){
         videoService.save(video);
-        return Msg.sucess();
+        return Msg.success();
     }
     //删除小节
     @DeleteMapping("/removeVideo/{videoId}")
@@ -44,18 +44,18 @@ public class EduVideoController {
             }
         }
         videoService.removeVideoById(videoId);
-        return Msg.sucess();
+        return Msg.success();
     }
     //修改小节
     @PostMapping("/updateVideo")
     public Msg updateVideo(@RequestBody EduVideo video){
         videoService.updateById(video);
-        return Msg.sucess();
+        return Msg.success();
     }
     @GetMapping("/getVideo/{videoId}")
     public Msg getVideoById(@PathVariable String videoId){
         EduVideo video = videoService.getById(videoId);
-        return Msg.sucess().data("video",video);
+        return Msg.success().data("video",video);
     }
 }
 

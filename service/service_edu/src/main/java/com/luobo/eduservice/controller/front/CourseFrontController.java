@@ -37,7 +37,7 @@ public class CourseFrontController {
                                   @RequestBody(required = false) CourseFrontVo courseFrontVo){
         Page<EduCourse> coursePage = new Page<>(current,limit);
         Map<String, Object> map = courseService.getCourseFrontList(coursePage, courseFrontVo);
-        return Msg.sucess().data(map);
+        return Msg.success().data(map);
     }
     @GetMapping("getFrontCourseInfo/{courseId}")
     public Msg getFrontCourseInfo(@PathVariable String courseId, HttpServletRequest request){
@@ -45,7 +45,7 @@ public class CourseFrontController {
         List<ChapterVo> chapterVideoList = chapterService.getChapterVideoByCourseId(courseId);
         String memberIdByJwtToken = JwtUtils.getMemberIdByJwtToken(request);
         boolean buyCourse = ordersClient.isBuyCourse(courseId,memberIdByJwtToken);
-        return Msg.sucess().data("courseWebVo", courseWebVo).data("chapterVideoList", chapterVideoList).data("isBuy",buyCourse);
+        return Msg.success().data("courseWebVo", courseWebVo).data("chapterVideoList", chapterVideoList).data("isBuy",buyCourse);
     }
     //根据课程id查询课程信息
     @GetMapping("getCourseInfo/{courseId}")

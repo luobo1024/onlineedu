@@ -25,7 +25,7 @@ public class VodController {
     @PostMapping("/uploadVideo")
     public Msg uploadVideo(MultipartFile file){
         String videoId = vodService.uploadVideo(file);
-        return Msg.sucess().data("videoId",videoId);
+        return Msg.success().data("videoId",videoId);
     }
     @DeleteMapping("/removeVideo/{id}")
     public Msg removeVideo(@PathVariable String id){
@@ -34,7 +34,7 @@ public class VodController {
             DeleteVideoRequest request = new DeleteVideoRequest();
             request.setVideoIds(id);
             client.getAcsResponse(request);
-            return Msg.sucess();
+            return Msg.success();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -43,7 +43,7 @@ public class VodController {
     @DeleteMapping("/delete-batch")
     public Msg deleteBatch(@RequestParam List<String> videoList){
         vodService.removeMoreVideo(videoList);
-        return Msg.sucess();
+        return Msg.success();
     }
 
     @GetMapping("/getPlayAuth/{id}")
@@ -54,7 +54,7 @@ public class VodController {
             request.setVideoId(id);
             GetVideoPlayAuthResponse response = client.getAcsResponse(request);
             String playAuth = response.getPlayAuth();
-            return Msg.sucess().data("playAuth", playAuth);
+            return Msg.success().data("playAuth", playAuth);
         }catch (Exception e){
             throw new EduException(20001,"获取视频失败");
         }

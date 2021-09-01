@@ -30,12 +30,12 @@ public class EduSubjectController {
     @PostMapping("/addSubject")
     public Msg addSubject(MultipartFile file){
         subjectService.saveSubject(file);
-        return Msg.sucess();
+        return Msg.success();
     }
     @GetMapping("/getAllSubject")
     public Msg getAllSubject(){
         List<SubjectTree> allSubject = subjectService.getAllSubject();
-        return Msg.sucess().data("list",allSubject);
+        return Msg.success().data("list",allSubject);
     }
 }
 

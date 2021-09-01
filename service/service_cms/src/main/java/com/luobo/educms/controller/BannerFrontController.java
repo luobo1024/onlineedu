@@ -30,7 +30,7 @@ public class BannerFrontController {
     @GetMapping("/getAllBanner")
     public Msg getAllBanner(){
         List<CrmBanner> banners = crmBannerService.selectAllBanner();
-        return Msg.sucess().data("banners",banners);
+        return Msg.success().data("banners",banners);
     }
 
 }

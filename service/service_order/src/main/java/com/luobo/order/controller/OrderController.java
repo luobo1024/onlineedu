@@ -31,14 +31,14 @@ public class OrderController {
         String memberId = JwtUtils.getMemberIdByJwtToken(request);
         //返回订单
         String orderNo = orderService.createOrders(courseId, memberId);
-        return Msg.sucess().data("orderId",orderNo);
+        return Msg.success().data("orderId",orderNo);
     }
     @GetMapping("getOrderInfo/{orderId}")
     public Msg getOrderInfo(@PathVariable String orderId){
         QueryWrapper<Order> wrapper = new QueryWrapper<Order>();
         wrapper.eq("order_no", orderId);
         Order order = orderService.getOne(wrapper);
-        return Msg.sucess().data("item", order);
+        return Msg.success().data("item", order);
 
     }
     //根据课程Id和用户id查询订单表中的订单状态

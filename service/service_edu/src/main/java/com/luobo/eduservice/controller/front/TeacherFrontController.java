@@ -28,7 +28,7 @@ public class TeacherFrontController {
     public Msg getTeacherFrontList(@PathVariable long current, @PathVariable long limit){
         Page<EduTeacher> teacherPage  = new Page<>(current,limit);
         Map<String, Object> map =  teacherService.getTeacherFrontList(teacherPage);
-        return Msg.sucess().data(map);
+        return Msg.success().data(map);
     }
     @GetMapping("/getTeacherFrontInfo/{teacherId}")
     public Msg getTeacherFrontInfo(@PathVariable String teacherId){
@@ -36,6 +36,6 @@ public class TeacherFrontController {
         wrapper.eq("teacher_id", teacherId);
         EduTeacher eduTeacher = teacherService.getById(teacherId);
         List<EduCourse> list = courseService.list(wrapper);
-        return Msg.sucess().data("teacher",eduTeacher).data("courseList", list);
+        return Msg.success().data("teacher",eduTeacher).data("courseList", list);
     }
 }

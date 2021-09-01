@@ -1,7 +1,7 @@
 package com.luobo.eduservice.entity.excel;
 
 import com.alibaba.excel.annotation.ExcelProperty;
-import lombok.Data;
+import lombok.*;
 
 @Data
 public class SubjectData {
